@@ -1,0 +1,12 @@
+# Archivos del sistema operativo / OneDrive
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# Logs y temporales
+*.log
+*.tmp
+
+# Dependencias (no aplica: el proyecto no usa node_modules)
+node_modules/
