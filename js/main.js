@@ -38,7 +38,7 @@
 
   /* ============ PRELOADER ============ */
   var preloader = doc.getElementById('preloader');
-  var MIN_SHOW = 1500;                 // tiempo mínimo visible (ms)
+  var MIN_SHOW = 1800;                 // tiempo mínimo visible (ms) — deja completar el barrido del logo
   var startedAt = (window.performance && performance.now) ? performance.now() : Date.now();
   var heroReveals = Array.prototype.slice.call(doc.querySelectorAll('.hero [data-reveal]'));
 

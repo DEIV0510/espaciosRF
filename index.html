@@ -40,28 +40,33 @@
     body.is-loading { overflow:hidden; height:100vh; }
     #preloader{
       position:fixed; inset:0; z-index:9999;
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      display:flex; align-items:center; justify-content:center;
       background:var(--graphite-deep);
-      transition:opacity .8s ease, visibility .8s ease;
+      transition:opacity .7s ease, visibility .7s ease;
     }
     #preloader.is-done{ opacity:0; visibility:hidden; pointer-events:none; }
-    .pl-logo{ width:min(58vw,260px); height:auto; opacity:0; transform:translateY(8px);
-      animation:plLogoIn .9s ease .35s forwards; }
-    .pl-draw{ width:84px; height:84px; margin-bottom:22px; }
-    .pl-draw path,.pl-draw line{ stroke:var(--sand); stroke-width:2; fill:none;
-      stroke-linecap:round; stroke-linejoin:round; }
-    .pl-bar{ position:absolute; bottom:14%; width:min(46vw,180px); height:2px;
-      background:rgba(255,255,255,.12); overflow:hidden; border-radius:2px; }
-    .pl-bar::after{ content:""; position:absolute; inset:0; background:var(--sand);
-      transform:translateX(-100%); animation:plBar 2.2s cubic-bezier(.7,0,.3,1) forwards; }
-    @keyframes plLogoIn{ to{ opacity:1; transform:translateY(0);} }
-    @keyframes plBar{ to{ transform:translateX(0);} }
-    /* Failsafe: si el JS no corre, el preloader igual se va a los ~3.6s */
+    /* Pantalla de carga: SOLO el logo, revelado con un barrido + haz de luz dorado */
+    .pl-logo-wrap{ position:relative; width:min(64vw,280px); }
+    .pl-logo{
+      display:block; width:100%; height:auto;
+      clip-path:inset(0 100% 0 0);
+      animation:plReveal 1.15s cubic-bezier(.7,0,.2,1) .25s forwards;
+    }
+    .pl-scan{
+      position:absolute; top:-8%; bottom:-8%; left:0; width:2px;
+      background:linear-gradient(var(--sand), #fff, var(--sand));
+      box-shadow:0 0 16px 3px rgba(200,176,138,.75);
+      opacity:0;
+      animation:plScan 1.15s cubic-bezier(.7,0,.2,1) .25s forwards;
+    }
+    @keyframes plReveal{ to{ clip-path:inset(0 0 0 0);} }
+    @keyframes plScan{ 0%{ left:0; opacity:0; } 12%{ opacity:1; } 88%{ opacity:1; } 100%{ left:100%; opacity:0; } }
+    /* Failsafe: si el JS no corre, el preloader se va igual a los ~3.8s */
     @keyframes plFailsafe{ to{ opacity:0; visibility:hidden; } }
-    #preloader{ animation:plFailsafe .8s ease 3.6s forwards; }
+    #preloader{ animation:plFailsafe .8s ease 3.8s forwards; }
     @media (prefers-reduced-motion: reduce){
-      .pl-logo{ animation:none; opacity:1; transform:none; }
-      .pl-bar::after{ animation-duration:.6s; }
+      .pl-logo{ animation:none; clip-path:none; }
+      .pl-scan{ animation:none; opacity:0; }
     }
   </style>
 
@@ -79,15 +84,10 @@
        Trazo arquitectónico SVG + logo que aparece suavemente.
   ============================================================= -->
   <div id="preloader" aria-hidden="true">
-    <!-- Motivo arquitectónico que se "dibuja" (hexágono/casa, eco del logo) -->
-    <svg class="pl-draw" viewBox="0 0 100 100" aria-hidden="true">
-      <path class="pl-line" d="M50 6 L88 28 L88 72 L50 94 L12 72 L12 28 Z" />
-      <line class="pl-line" x1="50" y1="6" x2="50" y2="50" />
-      <line class="pl-line" x1="12" y1="28" x2="50" y2="50" />
-      <line class="pl-line" x1="88" y1="28" x2="50" y2="50" />
-    </svg>
-    <img class="pl-logo" src="assets/img/logo-white.png" alt="Innovar Espacios RF" width="260" height="125" />
-    <div class="pl-bar" aria-hidden="true"></div>
+    <div class="pl-logo-wrap">
+      <img class="pl-logo" src="assets/img/logo-white.png" alt="Innovar Espacios RF" width="280" height="134" />
+      <span class="pl-scan" aria-hidden="true"></span>
+    </div>
   </div>
 
   <!-- ============================================================
@@ -96,10 +96,7 @@
   <header class="nav" id="nav">
     <div class="container nav__inner">
       <a href="#inicio" class="brand" aria-label="Innovar Espacios RF — inicio">
-        <span class="brand__mark" aria-hidden="true">
-          <svg viewBox="0 0 100 100"><path d="M50 8 L86 29 L86 71 L50 92 L14 71 L14 29 Z" /><path d="M38 66 V40 H52 a8 8 0 0 1 0 16 H40 l14 10" /></svg>
-        </span>
-        <span class="brand__text"><strong>INNOVAR ESPACIOS</strong><em>RF</em></span>
+        <img src="assets/img/logo-white.png" alt="Innovar Espacios RF" width="200" height="96" />
       </a>
 
       <nav class="nav__links" id="navLinks" aria-label="Navegación principal">
