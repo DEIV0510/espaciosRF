@@ -88,6 +88,8 @@ body{
   text-rendering:optimizeLegibility;
 }
 img{ max-width:100%; height:auto; display:block; }
+/* <picture> transparente al layout: el <img> hereda los estilos como si no existiera el wrapper */
+picture{ display:contents; }
 a{ color:inherit; text-decoration:none; }
 button{ font-family:inherit; cursor:pointer; border:0; background:none; }
 ul{ list-style:none; margin:0; padding:0; }
