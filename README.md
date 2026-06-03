@@ -25,19 +25,20 @@ innovar-espacios-rf/
 │   └── img/
 │       ├── logo-white.png  ← logo blanco (fondos oscuros)
 │       ├── logo-dark.png   ← logo oscuro (fondos claros)
-│       └── proyectos/      ← fotos de la galería (todas .png)
+│       └── proyectos/      ← galería: .webp (se sirven) + .png (respaldo)
 │           ├── cocina-1.png … cocina-4 / 6 / 7
 │           ├── bano-1.png  / bano-2 / bano-3
 │           └── sala-1.png
 │
 ├── server.js               ← (opcional) mini-servidor para ver en local
-├── convert-images.js       ← (opcional) script con el que se generaron las .png
-└── refine-logos.js         ← (opcional) script que recortó/optimizó los logos
+├── convert-images.js       ← (opcional) generó las .png desde las fotos originales
+├── convert-webp.js         ← (opcional) generó las .webp (versión liviana)
+└── refine-logos.js         ← (opcional) recortó/optimizó los logos
 ```
 
-Los 3 archivos `.js` de la raíz (`server.js`, `convert-images.js`, `refine-logos.js`)
-**no son necesarios para publicar**: son herramientas de apoyo. Puedes borrarlos
-al subir si quieres dejar la carpeta más limpia.
+Los archivos `.js` de apoyo de la raíz (`server.js`, `convert-images.js`,
+`convert-webp.js`, `refine-logos.js`) **no son necesarios para publicar**. Puedes
+borrarlos al subir si quieres dejar la carpeta más limpia.
 
 ---
 
@@ -84,9 +85,11 @@ Abre <http://localhost:5197/>
 
 - **100% responsive**: celular, tablet y escritorio (probado a 375 / 768 / 1440 px,
   sin scroll horizontal en ninguno).
-- **Imágenes 100% PNG**: las fotos originales (`.jpg`/`.heic`) se convirtieron a `.png`
-  redimensionadas a 1500 px y optimizadas, con **lazy-loading** y dimensiones
-  reservadas (sin saltos de contenido / CLS).
+- **Imágenes optimizadas (WebP + respaldo PNG)**: cada foto se sirve en **WebP**
+  (~25–100 KB c/u, antes 1.7–3 MB en PNG) mediante `<picture>`, con el **PNG como
+  respaldo** para navegadores antiguos. Así carga rápido y **sin fallos en cualquier
+  celular** (iPhone/Android). Con **lazy-loading** y dimensiones reservadas (sin CLS).
+  Para regenerar los WebP: `node convert-webp.js`.
 - **Pantalla de carga** con trazo arquitectónico y logo, sin parpadeos (el fondo
   grafito se pinta de inmediato para evitar destellos blancos).
 - **Animaciones suaves**: aparición al hacer scroll, parallax sutil en el hero
