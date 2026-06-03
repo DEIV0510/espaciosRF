@@ -333,8 +333,8 @@ html.js [data-reveal].in-view{ opacity:1; transform:none; }
 .filter:hover{ color:var(--graphite); border-color:var(--sand); }
 .filter.is-active{ background:var(--graphite); color:var(--white); border-color:var(--graphite); }
 
-/* Masonry con columnas CSS */
-.gallery__grid{ column-count:1; column-gap:16px; }
+/* Masonry con columnas CSS — 2 columnas ya en celular */
+.gallery__grid{ column-count:2; column-gap:16px; }
 .g-item{
   position:relative; margin:0 0 16px; break-inside:avoid;
   border-radius:var(--radius-lg); overflow:hidden; cursor:pointer;
