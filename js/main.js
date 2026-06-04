@@ -19,7 +19,7 @@
      Reemplaza el número (formato internacional, sin "+", sin espacios).
      Ej. Colombia: 57 + número  ->  573001234567
   ============================================================= */
-  var WHATSAPP_NUMBER = '573000000000'; // <-- ⚠️ CAMBIAR por el número real
+  var WHATSAPP_NUMBER = '573103325222'; // WhatsApp Business de Innovar Espacios RF
   var WHATSAPP_MSG = 'Hola Innovar Espacios RF, me gustaría recibir una asesoría para mi proyecto.';
 
   function waHref() {
