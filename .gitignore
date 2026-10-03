@@ -8,5 +8,9 @@ ehthumbs.db
 *.log
 *.tmp
 
-# Dependencias (no aplica: el proyecto no usa node_modules)
+# Dependencias de herramientas (sharp, solo para convertir imágenes en local).
+# NO deben subirse: si package.json llega al repo, Vercel intentaría "buildear"
+# el sitio como proyecto Node en vez de servirlo como estático.
 node_modules/
+package.json
+package-lock.json
