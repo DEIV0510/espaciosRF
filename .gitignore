@@ -14,3 +14,7 @@ ehthumbs.db
 node_modules/
 package.json
 package-lock.json
+
+# Material fuente (fotos originales) que la reorganización dejó dentro del proyecto;
+# no se usa en el sitio, no debe ir al repo.
+_material-*/
