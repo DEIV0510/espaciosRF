@@ -447,6 +447,9 @@ html.js [data-reveal].in-view{ opacity:1; transform:none; }
 .review-card__author strong{ display:block; font-family:var(--font-head); color:var(--text-dark); font-size:.96rem; }
 .review-card__author small{ color:var(--muted-dark); font-size:.82rem; }
 
+/* ============ 12d. ESPACIOS COMERCIALES ============ */
+.commercial__cta{ text-align:center; margin-top:34px; }
+
 /* ============ 13. FOOTER ============ */
 .footer{ background:#161616; color:var(--gray-light); padding-top:clamp(48px,7vw,72px); }
 .footer__grid{ display:grid; gap:36px; grid-template-columns:1fr; }

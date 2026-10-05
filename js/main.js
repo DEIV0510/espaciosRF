@@ -192,7 +192,8 @@
 
   /* ============ GALERÍA: filtros + lightbox ============ */
   var filters = Array.prototype.slice.call(doc.querySelectorAll('.filter'));
-  var items = Array.prototype.slice.call(doc.querySelectorAll('.g-item'));
+  var items = Array.prototype.slice.call(doc.querySelectorAll('.g-item'));            // todas (galería + comerciales) para click/lightbox
+  var galleryItems = items.filter(function (it) { return it.closest('#galleryGrid'); }); // solo la galería principal (para los filtros)
   var visible = items.slice();
 
   function refreshVisible() {
@@ -204,7 +205,7 @@
       filters.forEach(function (b) { b.classList.remove('is-active'); b.setAttribute('aria-selected', 'false'); });
       btn.classList.add('is-active'); btn.setAttribute('aria-selected', 'true');
       var f = btn.getAttribute('data-filter');
-      items.forEach(function (it) {
+      galleryItems.forEach(function (it) {
         var show = (f === 'all' || it.getAttribute('data-cat') === f);
         it.classList.toggle('hide', !show);
       });
@@ -238,7 +239,10 @@
     });
   }
   function openLb(item) {
-    refreshVisible();
+    // cada galería (#galleryGrid y #commercialGrid) es su propio set en el lightbox
+    var grid = item.closest('.gallery__grid');
+    visible = (grid ? Array.prototype.slice.call(grid.querySelectorAll('.g-item')) : items)
+      .filter(function (it) { return !it.classList.contains('hide'); });
     idx = visible.indexOf(item);
     if (idx < 0) return;
     opener = item;
