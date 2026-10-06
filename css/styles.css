@@ -303,6 +303,7 @@ html.js [data-reveal].in-view{ opacity:1; transform:none; }
 .services__grid{ display:grid; gap:20px; grid-template-columns:1fr; }
 .service-card{
   position:relative; padding:34px 28px;
+  display:flex; flex-direction:column;
   background:var(--graphite-800); border:1px solid var(--graphite-700);
   border-radius:var(--radius-lg); overflow:hidden;
   transition:transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease);
@@ -321,7 +322,18 @@ html.js [data-reveal].in-view{ opacity:1; transform:none; }
 .service-card:hover .service-card__icon{ background:rgba(200,176,138,.14); border-color:var(--sand); }
 .service-card__icon svg{ width:30px; height:30px; fill:none; stroke:var(--sand); stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
 .service-card h3{ color:var(--white); font-size:1.18rem; margin-bottom:10px; }
-.service-card p{ color:var(--muted-light); font-size:.95rem; }
+.service-card p{ color:var(--muted-light); font-size:.95rem; margin-bottom:22px; }
+/* Botón "Cotizar" al pie de cada tarjeta de servicio (margin-top:auto lo alinea abajo en toda la fila) */
+.service-card__btn{
+  margin-top:auto; align-self:flex-start;
+  display:inline-flex; align-items:center; gap:8px;
+  padding:11px 22px; min-height:44px;
+  font-family:var(--font-head); font-weight:600; font-size:.88rem; letter-spacing:.01em;
+  color:var(--sand); border:1.5px solid var(--sand); border-radius:var(--radius);
+  transition:background .25s var(--ease), color .25s var(--ease), transform .25s var(--ease);
+}
+.service-card__btn svg{ width:17px; height:17px; fill:none; stroke:currentColor; stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+.service-card__btn:hover{ background:var(--sand); color:var(--graphite); transform:translateY(-2px); }
 
 /* ============ 9. GALERÍA ============ */
 .gallery__filters{ display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-bottom:34px; }

@@ -22,12 +22,13 @@
   var WHATSAPP_NUMBER = '573103325222'; // WhatsApp Business de Innovar Espacios RF
   var WHATSAPP_MSG = 'Hola Innovar Espacios RF, me gustaría recibir una asesoría para mi proyecto.';
 
-  function waHref() {
-    return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(WHATSAPP_MSG);
+  function waHref(msg) {
+    return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg || WHATSAPP_MSG);
   }
-  // Aplica el enlace a todos los botones marcados con data-wa
+  // Aplica el enlace a todos los botones marcados con data-wa.
+  // Si el botón trae data-wa-msg, usa ese mensaje personalizado (p. ej. cotizar un servicio concreto).
   Array.prototype.forEach.call(doc.querySelectorAll('[data-wa]'), function (a) {
-    a.setAttribute('href', waHref());
+    a.setAttribute('href', waHref(a.getAttribute('data-wa-msg')));
     a.setAttribute('target', '_blank');
     a.setAttribute('rel', 'noopener');
   });
